@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:making_http_request/http/http_helper.dart';
-import 'package:making_http_request/user_model.dart';
+import 'package:making_http_request/models/user_model.dart';
 
 class GetUserScreen extends StatefulWidget {
   const GetUserScreen({super.key});
@@ -27,7 +27,7 @@ class _GetUserScreenState extends State<GetUserScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Fetch data on click"),
+        title: const Text("Fetch data on click"),
       ),
       body: Center(
         child: Column(

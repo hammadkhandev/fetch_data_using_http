@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:making_http_request/http/http_helper.dart';
-import 'package:making_http_request/user_model.dart';
+import 'package:making_http_request/models/user_model.dart';
 
 class GetSingleUser extends StatefulWidget {
   const GetSingleUser({super.key});
