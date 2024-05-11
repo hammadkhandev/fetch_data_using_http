@@ -66,6 +66,55 @@ class httpHelper {
     }
   }
 
+  Future postUser(GetUser user) async {
+    final client = RetryClient(http.Client());
+    try{
+      var url = Uri.parse("https://jsonplaceholder.typicode.com/posts");
+      var header =<String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      };
+      var body = jsonEncode(user.toJson());
+      var response = await client.post(
+          url,
+          headers: header,
+          body: body
+      );
+      printJsonResponse(response);
+      if(response.statusCode ==201){
+        return true;
+      }else{
+        return false;
+      }
+    }finally{
+      client.close();
+    }
+
+
+  }
+
+  Future deleteUser(String id) async {
+    final client = RetryClient(http.Client());
+    try{
+      var url = Uri.parse("https://jsonplaceholder.typicode.com/posts/$id");
+      var header =<String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      };
+      var response = await client.delete(
+          url,
+          headers: header,
+      );
+      printJsonResponse(response);
+      if(response.statusCode ==201){
+        return true;
+      }else{
+        return false;
+      }
+    }finally{
+      client.close();
+    }
+
+
+  }
   void printJsonResponse(http.Response jsonResponse) {
     if(kDebugMode){
       print(jsonResponse.body.toString());

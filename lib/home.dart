@@ -2,12 +2,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:making_http_request/pages/delete_user.dart';
 import 'package:making_http_request/pages/get_user.dart';
 import 'package:making_http_request/http/http_helper.dart';
 import 'package:making_http_request/pages/get_user_on_click.dart';
 import 'package:making_http_request/models/user_model.dart';
 import 'package:making_http_request/pages/get_users.dart';
 import 'package:making_http_request/pages/get_users_future_builder.dart';
+import 'package:making_http_request/pages/post_user.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -59,7 +61,18 @@ class _HomePageState extends State<HomePage> {
              Navigator.push(context, MaterialPageRoute(builder: (context)=> const UsersFutureScreen()));
            }, child: const Text("Future users")
             ),
-
+            SizedBox(height: 10,),
+            ///post list of user on init method
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> const PostUser()));
+            }, child: const Text("Post User data")
+            ),
+            SizedBox(height: 10,),
+            ///post list of user on init method
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> const DeleteUser()));
+            }, child: const Text("Delete User data")
+            ),
           ],
         ),
       ),
