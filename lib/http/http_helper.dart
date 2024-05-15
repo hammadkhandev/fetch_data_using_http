@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/retry.dart';
+import 'package:making_http_request/models/images_model.dart';
 import 'package:making_http_request/models/user_model.dart';
 
 class httpHelper {
@@ -112,9 +113,36 @@ class httpHelper {
     }finally{
       client.close();
     }
-
-
   }
+
+
+
+  Future<List<Photo>> fetchPhotos() async{
+    final client = RetryClient(http.Client());
+    try{
+     final url = Uri.parse('https://jsonplaceholder.typicode.com/photos');
+     final response = await http.get(url);
+     printJsonResponse(response);
+     if(response.statusCode ==200){
+       /// Use the compute function to run parsePhotos in a separate isolate.
+       return compute(parsePhotos, response.body);
+     }else{
+       throw Exception("Failed to load photo data ${response.request.toString()}");
+     }
+    }catch(e){
+      throw Exception("Failed in this exception: $e");
+    }
+    finally{
+      client.close();
+    }
+  }
+
+  /// A function that converts a response body into a List<Photo>.
+  List<Photo> parsePhotos(String responseBody) {
+    final parsed = (jsonDecode(responseBody) as List).cast<Map<String,dynamic>>();
+    return parsed.map<Photo>((json) => Photo.fromJson(json)).toList();
+  }
+
   void printJsonResponse(http.Response jsonResponse) {
     if(kDebugMode){
       print(jsonResponse.body.toString());

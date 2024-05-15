@@ -68,7 +68,6 @@ class _DeleteUserState extends State<DeleteUser> {
             ElevatedButton(onPressed: getUserData, child: const Text("get user")),
             const SizedBox(height: 10,),
             ElevatedButton(onPressed: deleteUser, child: const Text("delete user")),
-
           ],
         ),
       ),

@@ -2,6 +2,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:making_http_request/pages/api_pagination.dart';
 import 'package:making_http_request/pages/delete_user.dart';
 import 'package:making_http_request/pages/get_user.dart';
 import 'package:making_http_request/http/http_helper.dart';
@@ -9,6 +10,8 @@ import 'package:making_http_request/pages/get_user_on_click.dart';
 import 'package:making_http_request/models/user_model.dart';
 import 'package:making_http_request/pages/get_users.dart';
 import 'package:making_http_request/pages/get_users_future_builder.dart';
+import 'package:making_http_request/pages/images_page.dart';
+import 'package:making_http_request/pages/infinite_scrolling.dart';
 import 'package:making_http_request/pages/post_user.dart';
 
 class HomePage extends StatefulWidget {
@@ -72,6 +75,24 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=> const DeleteUser()));
             }, child: const Text("Delete User data")
+            ),
+            SizedBox(height: 10,),
+            ///Infinite Scrolling basic concept
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>  InfiniteScrolling()));
+            }, child: const Text("Infinite Scrolling")
+            ),
+            SizedBox(height: 10,),
+            ///Infinite Scrolling || api pagination
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>  APIPagination()));
+            }, child: const Text("API Pagination")
+            ),
+            SizedBox(height: 10,),
+            ///get using http Images Pages
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>  const ImagePage()));
+            }, child: const Text("Images Page")
             ),
           ],
         ),
